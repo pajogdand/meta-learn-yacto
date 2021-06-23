@@ -1,11 +1,18 @@
-SUMMARY = "bitbake-layers recipe"
-DESCRIPTION = "Recipe created by bitbake-layers"
-LICENSE = "MIT"
+DISCRIPTION="recipe for hello c file"
+LICENSE="CLOSED"
 
-python do_build() {
-    bb.plain("***********************************************");
-    bb.plain("*                                             *");
-    bb.plain("*  Example recipe created by bitbake-layers   *");
-    bb.plain("*                                             *");
-    bb.plain("***********************************************");
+SRC_URI="file://userprog.c"
+
+S="${WORKDIR}"
+
+do_compile(){
+  cd ${S}
+  $CC ${LDFLAGS} userprog.c -o userprog
 }
+
+do_install(){
+  install -d ${D}/usr/bin
+  install -m 777 ${S}/userprog ${D}/usr/bin/
+}
+
+INSANE_SKIP_${PN} = "LDFLAGS"
