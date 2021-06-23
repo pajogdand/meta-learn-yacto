@@ -28,6 +28,7 @@ do_install() {
 	bbwarn "compilation ended"
 }
 
+ALLOW_EMPTY_${PN} = "1"
 #FILES_${PN}-dbg += "${bindir}/userprog ${includedir}/ReadMe.Txt"
 #FILES_${PN}-lwl += "${includedir}/ReadMe.Txt ${includedir}/ReadMe.Txt"
 
