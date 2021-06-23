@@ -14,24 +14,20 @@ do_compile() {
 	bbnote "compilation started"
 	${CC} -fPIC -c arith.c
         ${CC} -fPIC -c print.c
-        bbnote "generating the static library"
-        gcc ${LDFLAGS} -shared -Wl,-soname,liblwl.so.1 -Wcpp -o liblwl.so.1.0 *.o
+        bbnote "generating the dynamic library"
+        #gcc ${LDFLAGS} -shared -Wl,-soname,liblwl.so.1 -Wcpp -o liblwl.so.1.0 *.o
+        ${CC} ${LDFLAGS} -shared -o liblwl.so *.o
         bbnote "compilation ended"
 }	
 
 do_install() {
 	bbwarn "compilation started"
 	install -d ${D}${libdir}
-	install -m 0755 liblwl.so.1.0 ${D}${libdir}
-        ln -s liblwl.so.1.0 ${D}${libdir}/liblwl.so.1
-        ln -s liblwl.so.1.0 ${D}${libdir}/liblwl.so  
+	install -m 0755 liblwl.so ${D}${libdir}
 	install -d ${D}${includedir}
 	install -m 0755 mylib.h ${D}${includedir}
 	bbwarn "compilation ended"
 }
 
-ALLOW_EMPTY_${PN} = "1"
-#FILES_${PN}-dbg += "${bindir}/userprog ${includedir}/ReadMe.Txt"
-#FILES_${PN}-lwl += "${includedir}/ReadMe.Txt ${includedir}/ReadMe.Txt"
-
-#PACKAGES = "${PN}-lwl"
+SOLIBS = "*.so"
+FILES_SOLIBSDEV = ""
