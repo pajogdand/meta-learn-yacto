@@ -24,3 +24,7 @@ do_install() {
 	bbwarn "compilation ended"
 }
 
+#FILES_${PN}-dbg += "${bindir}/userprog ${includedir}/ReadMe.Txt"
+#FILES_${PN}-lwl += "${includedir}/ReadMe.Txt ${includedir}/ReadMe.Txt"
+
+#PACKAGES = "${PN}-lwl"
