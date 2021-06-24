@@ -7,3 +7,6 @@ SRC_URI="file://userprog.c \
 S="${WORKDIR}"
 
 inherit cmake
+
+#Copy userprog to /bin insteated of default /usr/bin/
+EXTRA_OECMAKE = "-DCMAKE_INSTALL_PREFIX:PATH=/"
